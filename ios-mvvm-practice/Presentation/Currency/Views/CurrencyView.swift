@@ -13,8 +13,8 @@ final class CurrencyView: BaseView {
     //MARK: - UI Property
     private let exchangeRateLabel = UILabel()
     private let amountTextField = UITextField()
-    private let convertButton = UIButton(type: .system)
-    private let resultLabel = UILabel()
+    let convertButton = UIButton(type: .system)
+    let resultLabel = UILabel()
     
     //MARK: - Setup Method
     override func setupUI() {
