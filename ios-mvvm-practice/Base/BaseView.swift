@@ -7,11 +7,27 @@
 
 import UIKit
 
-class BaseView: UIView {
+protocol setupView {
+    func setupUI()
+    func setupConstraints()
+    func setupAttributes()
+}
+
+class BaseView: UIView, setupView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        setupUI()
+        setupConstraints()
+        setupAttributes()
     }
+    
+    func setupUI() {}
+    
+    func setupConstraints() {}
+    
+    func setupAttributes() {}
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
