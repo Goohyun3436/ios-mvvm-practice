@@ -56,11 +56,16 @@ final class CurrencyView: BaseView {
         exchangeRateLabel.textAlignment = .center
         exchangeRateLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
-        amountTextField.borderStyle = .roundedRect
         amountTextField.keyboardType = .numberPad
+        amountTextField.borderStyle = .roundedRect
+        amountTextField.layer.cornerRadius = 8
+        amountTextField.layer.borderWidth = 1
+        amountTextField.layer.borderColor = UIColor.gray.cgColor
         amountTextField.textAlignment = .center
+        amountTextField.attributedPlaceholder = NSAttributedString(string: amountTextField.placeholder ?? "", attributes: [.foregroundColor: UIColor.gray])
         
         convertButton.layer.cornerRadius = 8
+        convertButton.backgroundColor = UIColor.white
         convertButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         
         resultLabel.textAlignment = .center

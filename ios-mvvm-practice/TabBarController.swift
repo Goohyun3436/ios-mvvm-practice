@@ -51,6 +51,7 @@ final class TabBarController: UITabBarController {
     //MARK: - Override Method
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.black
         configureTBC()
     }
     

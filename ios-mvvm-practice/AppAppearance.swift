@@ -31,16 +31,16 @@ final class AppAppearance {
         
         UILabel.appearance().textColor = UIColor.white
         
-        UIButton.appearance().backgroundColor = UIColor.white
         UIButton.appearance().setTitleColor(UIColor.black, for: .normal)
         
         UITextField.appearance().tintColor = UIColor.white
         UITextField.appearance().textColor = UIColor.white
+        UITextField.appearance().backgroundColor = UIColor.black
         UITextField.appearance().keyboardAppearance = UIKeyboardAppearance.dark
         
         UITextView.appearance().tintColor = UIColor.white
         UITextView.appearance().textColor = UIColor.white
-        UITextView.appearance().keyboardAppearance = UIKeyboardAppearance.dark
+        UITextView.appearance().backgroundColor = UIColor.black
         
         UITableView.appearance().backgroundColor = UIColor.clear
         UITableView.appearance().separatorColor = UIColor.darkGray

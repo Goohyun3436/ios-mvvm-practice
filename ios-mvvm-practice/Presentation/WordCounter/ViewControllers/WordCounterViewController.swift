@@ -9,6 +9,14 @@ import UIKit
 
 class WordCounterViewController: UIViewController {
     
+    //MARK: - UI Property
+    private let mainView = WordCountView()
+    
+    //MARK: - Override Method
+    override func loadView() {
+        view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
