@@ -26,17 +26,34 @@ final class CurrencyViewController: UIViewController {
         setupBinds()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        mainView.amountTextField.becomeFirstResponder()
+    }
+    
     //MARK: - Method
+    @objc private func mainViewTapped() {
+        mainView.amountTextField.resignFirstResponder()
+    }
+    
     @objc private func amountTextFieldDidChanged() {
         viewModel.amountText.value = mainView.amountTextField.text
     }
     
     @objc private func convertButtonTapped() {
         viewModel.convertButtonTapped.value = ()
+        mainView.amountTextField.resignFirstResponder()
     }
     
     //MARK: - Setup Method
     private func setupActions() {
+        let singleTap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(mainViewTapped)
+        )
+        mainView.addGestureRecognizer(singleTap)
+        mainView.isUserInteractionEnabled = true
+        
         mainView.amountTextField.addTarget(
             self,
             action: #selector(amountTextFieldDidChanged),
@@ -54,7 +71,7 @@ final class CurrencyViewController: UIViewController {
         viewModel.convertValidation.bind { validation in
             self.mainView.convertButton.backgroundColor = validation
                 ? UIColor.white
-                : UIColor.darkGray
+                : UIColor.gray
         }
         
         viewModel.resultText.bind { text in
