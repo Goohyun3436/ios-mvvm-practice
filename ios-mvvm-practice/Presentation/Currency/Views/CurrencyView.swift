@@ -64,7 +64,6 @@ final class CurrencyView: BaseView {
         amountTextField.attributedPlaceholder = NSAttributedString(string: amountTextField.placeholder ?? "", attributes: [.foregroundColor: UIColor.gray])
         
         convertButton.layer.cornerRadius = 8
-        convertButton.backgroundColor = UIColor.white
         convertButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         
         resultLabel.textAlignment = .center

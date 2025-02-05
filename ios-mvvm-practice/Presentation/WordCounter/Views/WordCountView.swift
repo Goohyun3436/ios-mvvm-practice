@@ -16,8 +16,6 @@ final class WordCountView: BaseView {
     
     //MARK: - Setup Method
     override func setupUI() {
-        countLabel.text = "현재까지 0글자 작성중"
-        
         [textView, countLabel].forEach {
             addSubview($0)
         }

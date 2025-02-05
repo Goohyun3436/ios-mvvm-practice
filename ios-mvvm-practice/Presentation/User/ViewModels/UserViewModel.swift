@@ -9,6 +9,11 @@ import Foundation
 
 final class UserViewModel {
     
+    struct Person {
+        let name: String
+        let age: Int
+    }
+    
     var people: Observable<[Person]> = Observable([])
     var loadButtonTapped: Observable<Void> = Observable(())
     var resetButtonTapped: Observable<Void> = Observable(())

@@ -7,11 +7,6 @@
 
 import UIKit
 
-struct Person {
-    let name: String
-    let age: Int
-}
-
 final class UserViewController: UIViewController {
     
     //MARK: - UI Property
@@ -87,6 +82,7 @@ extension UserViewController: UITableViewDelegate, UITableViewDataSource {
         let person = viewModel.people.value[indexPath.row]
         cell.textLabel?.text = "\(person.name), \(person.age)세"
         cell.textLabel?.textColor = UIColor.white
+        
         return cell
     }
     
