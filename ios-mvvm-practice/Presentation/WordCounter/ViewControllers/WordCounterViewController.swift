@@ -26,7 +26,25 @@ final class WordCounterViewController: UIViewController {
         setupBinds()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        mainView.textView.becomeFirstResponder()
+    }
+    
+    //MARK: - Method
+    @objc private func mainViewTapped() {
+        mainView.textView.resignFirstResponder()
+    }
+    
+    //MARK: - Setup Method
     private func setupActions() {
+        let singleTap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(mainViewTapped)
+        )
+        mainView.addGestureRecognizer(singleTap)
+        mainView.isUserInteractionEnabled = true
+        
         mainView.textView.delegate = self
     }
     
