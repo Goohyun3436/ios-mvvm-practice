@@ -12,23 +12,39 @@ final class AppAppearance {
     private init() {}
     
     static func setUpAppearance() {
-        BaseView.appearance().backgroundColor = UIColor.white
+        let appearanceT = UITabBarAppearance()
+        appearanceT.configureWithTransparentBackground()
+        appearanceT.backgroundColor = UIColor.black
+        UITabBar.appearance().tintColor = UIColor.white
+        UITabBar.appearance().standardAppearance = appearanceT
+        UITabBar.appearance().scrollEdgeAppearance = appearanceT
         
-        UILabel.appearance().textColor = UIColor.black
+        let appearanceN = UINavigationBarAppearance()
+        appearanceN.configureWithTransparentBackground()
+        appearanceN.backgroundColor = UIColor.black
+        appearanceN.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearanceN.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().standardAppearance = appearanceN
+        UINavigationBar.appearance().scrollEdgeAppearance = appearanceN
         
-        UIButton.appearance().setTitleColor(UIColor.white, for: .normal)
+        BaseView.appearance().backgroundColor = UIColor.black
         
-        UITextField.appearance().tintColor = UIColor.black
-        UITextField.appearance().textColor = UIColor.black
-        UITextField.appearance().keyboardAppearance = UIKeyboardAppearance.light
+        UILabel.appearance().textColor = UIColor.white
         
-        UITextView.appearance().tintColor = UIColor.black
-        UITextView.appearance().textColor = UIColor.black
-        UITextView.appearance().keyboardAppearance = UIKeyboardAppearance.light
+        UIButton.appearance().backgroundColor = UIColor.white
+        UIButton.appearance().setTitleColor(UIColor.black, for: .normal)
+        
+        UITextField.appearance().tintColor = UIColor.white
+        UITextField.appearance().textColor = UIColor.white
+        UITextField.appearance().keyboardAppearance = UIKeyboardAppearance.dark
+        
+        UITextView.appearance().tintColor = UIColor.white
+        UITextView.appearance().textColor = UIColor.white
+        UITextView.appearance().keyboardAppearance = UIKeyboardAppearance.dark
         
         UITableView.appearance().backgroundColor = UIColor.clear
-        UITableView.appearance().separatorColor = UIColor.tertiarySystemBackground
-        UITableView.appearance().indicatorStyle = .white
+        UITableView.appearance().separatorColor = UIColor.darkGray
+        UITableView.appearance().indicatorStyle = .black
         UITableViewCell.appearance().backgroundColor = UIColor.clear
         UITableViewCell.appearance().selectionStyle = .none
     }
