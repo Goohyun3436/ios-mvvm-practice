@@ -24,7 +24,7 @@ final class UserViewModel {
         }
         
         addButtonTapped.lazyBind { _ in
-            
+            self.addPerson()
         }
     }
     
@@ -40,6 +40,12 @@ final class UserViewModel {
     
     private func resetPerson() {
         people.value.removeAll()
+    }
+    
+    private func addPerson() {
+        let names = ["James", "Mary", "John", "Patricia", "Robert", "Jennifer", "Michael", "Linda", "William", "Elizabeth", "David", "Barbara", "Richard", "Susan", "Joseph", "Jessica", "Thomas", "Sarah", "Charles", "Karen"]
+        let user = Person(name: names.randomElement()!, age: Int.random(in: 20...70))
+        people.value.append(user)
     }
     
 }
