@@ -11,8 +11,8 @@ import SnapKit
 final class WordCountView: BaseView {
     
     //MARK: - UI Property
-    private let textView = UITextView()
-    private let countLabel = UILabel()
+    let textView = UITextView()
+    let countLabel = UILabel()
     
     //MARK: - Setup Method
     override func setupUI() {
