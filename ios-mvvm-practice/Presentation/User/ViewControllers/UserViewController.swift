@@ -38,7 +38,9 @@ final class UserViewController: UIViewController {
         viewModel.loadButtonTapped.value = ()
     }
     
-    @objc private func resetButtonTapped() {}
+    @objc private func resetButtonTapped() {
+        viewModel.resetButtonTapped.value = ()
+    }
     
     @objc private func addButtonTapped() {}
     

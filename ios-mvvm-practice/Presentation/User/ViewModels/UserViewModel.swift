@@ -20,7 +20,7 @@ final class UserViewModel {
         }
         
         resetButtonTapped.lazyBind { _ in
-            
+            self.resetPerson()
         }
         
         addButtonTapped.lazyBind { _ in
@@ -36,6 +36,10 @@ final class UserViewModel {
             Person(name: "Patricia", age: Int.random(in: 20...70)),
             Person(name: "Robert", age: Int.random(in: 20...70))
         ]
+    }
+    
+    private func resetPerson() {
+        people.value.removeAll()
     }
     
 }
