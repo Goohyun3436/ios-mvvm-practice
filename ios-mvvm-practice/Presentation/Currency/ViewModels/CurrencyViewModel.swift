@@ -12,31 +12,54 @@ final class CurrencyViewModel {
     var amountText: Observable<String?> = Observable(nil)
     var convertButtonTapped: Observable<Void> = Observable(())
     var resultText: Observable<String?> = Observable(nil)
+    var convertValidation = Observable(false)
+    
+    private var amount: Double?
     
     init() {
+        amountText.bind { amount in
+            self.validation(of: amount)
+        }
+        
         convertButtonTapped.lazyBind { _ in
             self.convert()
         }
     }
     
-    private func convert() {
-        guard let amountText = amountText.value else {
+    private func validation(of amountText: String?) {
+        guard let amountText else {
             resultText.value = "환전 결과가 여기에 표시됩니다."
+            convertValidation.value = false
             return
         }
         
         guard !amountText.isEmpty else {
             resultText.value = "환전 결과가 여기에 표시됩니다."
+            convertValidation.value = false
             return
         }
         
         guard let amount = Double(amountText) else {
             resultText.value = "올바른 금액을 입력해주세요."
+            convertValidation.value = false
             return
         }
         
         guard  0 < amount && amount <= 10000000000 else {
             resultText.value = "0 ~ 100억 달러 사이의 원화 금액을 입력해주세요."
+            convertValidation.value = false
+            return
+        }
+        
+        resultText.value = "환전 결과가 여기에 표시됩니다."
+        convertValidation.value = true
+        self.amount = amount
+    }
+    
+    private func convert() {
+        guard let amount else {
+            resultText.value = "올바른 금액을 입력해주세요."
+            convertValidation.value = true
             return
         }
         

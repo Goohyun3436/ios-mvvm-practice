@@ -27,7 +27,6 @@ class Observable<T> {
     }
     
     func lazyBind(closure: @escaping (T) -> Void) {
-        closure(value)
         self.closure = closure
     }
 }
