@@ -27,12 +27,22 @@ final class CurrencyViewController: UIViewController {
     }
     
     //MARK: - Method
+    @objc private func amountTextFieldDidChanged() {
+        viewModel.amountText.value = mainView.amountTextField.text
+    }
+    
     @objc private func convertButtonTapped() {
         viewModel.convertButtonTapped.value = ()
     }
     
     //MARK: - Setup Method
     private func setupActions() {
+        mainView.amountTextField.addTarget(
+            self,
+            action: #selector(amountTextFieldDidChanged),
+            for: .editingChanged
+        )
+        
         mainView.convertButton.addTarget(
             self,
             action: #selector(convertButtonTapped),

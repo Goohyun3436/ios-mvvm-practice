@@ -12,7 +12,7 @@ final class CurrencyView: BaseView {
     
     //MARK: - UI Property
     private let exchangeRateLabel = UILabel()
-    private let amountTextField = UITextField()
+    let amountTextField = UITextField()
     let convertButton = UIButton(type: .system)
     let resultLabel = UILabel()
     
@@ -21,7 +21,6 @@ final class CurrencyView: BaseView {
         exchangeRateLabel.text = "현재 환율: 1 USD = 1,350 KRW"
         amountTextField.placeholder = "원화 금액을 입력하세요"
         convertButton.setTitle("환전하기", for: .normal)
-        resultLabel.text = "환전 결과가 여기에 표시됩니다"
         
         [exchangeRateLabel, amountTextField, convertButton, resultLabel].forEach {
             addSubview($0)
