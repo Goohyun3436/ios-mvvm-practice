@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WordCounterViewController: UIViewController {
+final class WordCounterViewController: UIViewController {
     
     //MARK: - UI Property
     private let mainView = WordCountView()

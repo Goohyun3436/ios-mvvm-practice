@@ -12,7 +12,7 @@ struct Person {
     let age: Int
 }
 
-class UserViewController: UIViewController {
+final class UserViewController: UIViewController {
     
     //MARK: - UI Property
     private let mainView = UserView()
