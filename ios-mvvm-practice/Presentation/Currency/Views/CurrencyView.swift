@@ -31,24 +31,24 @@ final class CurrencyView: BaseView {
     override func setupConstraints() {
         exchangeRateLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(40)
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.horizontalEdges.equalToSuperview().inset(20)
         }
         
         amountTextField.snp.makeConstraints { make in
             make.top.equalTo(exchangeRateLabel.snp.bottom).offset(30)
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.horizontalEdges.equalToSuperview().inset(20)
             make.height.equalTo(50)
         }
         
         convertButton.snp.makeConstraints { make in
             make.top.equalTo(amountTextField.snp.bottom).offset(30)
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.horizontalEdges.equalToSuperview().inset(20)
             make.height.equalTo(50)
         }
         
         resultLabel.snp.makeConstraints { make in
             make.top.equalTo(convertButton.snp.bottom).offset(30)
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.horizontalEdges.equalToSuperview().inset(20)
         }
     }
     
