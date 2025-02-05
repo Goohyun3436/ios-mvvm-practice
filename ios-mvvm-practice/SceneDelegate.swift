@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
 //        window?.rootViewController = TabBarController()
-        window?.rootViewController = UINavigationController(rootViewController: WordCounterViewController())
+        window?.rootViewController = UINavigationController(rootViewController: UserViewController())
         window?.makeKeyAndVisible()
     }
 

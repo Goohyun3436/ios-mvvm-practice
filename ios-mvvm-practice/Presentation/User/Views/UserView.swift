@@ -12,9 +12,9 @@ final class UserView: BaseView {
     
     //MARK: - UI Property
     private lazy var buttonStackView = UIStackView(arrangedSubviews: [loadButton, resetButton, addButton])
-    private let loadButton = UIButton(type: .system)
-    private let resetButton = UIButton(type: .system)
-    private let addButton = UIButton(type: .system)
+    let loadButton = UIButton(type: .system)
+    let resetButton = UIButton(type: .system)
+    let addButton = UIButton(type: .system)
     let tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "PersonCell")

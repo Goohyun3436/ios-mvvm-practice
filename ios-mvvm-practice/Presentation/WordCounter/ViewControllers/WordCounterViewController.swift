@@ -22,6 +22,7 @@ final class WordCounterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView.textView.delegate = self
         setupActions()
         setupBinds()
     }
@@ -44,8 +45,6 @@ final class WordCounterViewController: UIViewController {
         )
         mainView.addGestureRecognizer(singleTap)
         mainView.isUserInteractionEnabled = true
-        
-        mainView.textView.delegate = self
     }
     
     private func setupBinds() {
