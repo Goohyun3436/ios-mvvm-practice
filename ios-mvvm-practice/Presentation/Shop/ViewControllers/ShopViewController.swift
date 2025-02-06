@@ -44,7 +44,7 @@ final class ShopViewController: UIViewController {
         
         viewModel.outputQuery.lazyBind { query in
             let vc = ShopDetailViewController()
-            vc.query = query
+            vc.viewModel.inputQuery.value = query
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
