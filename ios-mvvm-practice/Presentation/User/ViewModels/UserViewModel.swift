@@ -9,30 +9,30 @@ import Foundation
 
 final class UserViewModel {
     
-    struct Person {
-        let name: String
-        let age: Int
-    }
-    
-    let people: Observable<[Person]> = Observable([])
+    //MAKR: - Input
     let loadButtonTapped: Observable<Void> = Observable(())
     let resetButtonTapped: Observable<Void> = Observable(())
     let addButtonTapped: Observable<Void> = Observable(())
     
+    //MAKR: - Output
+    let people: Observable<[Person]> = Observable([])
+    
+    //MAKR: - Initializer Method
     init() {
-        loadButtonTapped.lazyBind { _ in
-            self.loadPerson()
+        loadButtonTapped.lazyBind { [weak self]  _ in
+            self?.loadPerson()
         }
         
-        resetButtonTapped.lazyBind { _ in
-            self.resetPerson()
+        resetButtonTapped.lazyBind { [weak self] _ in
+            self?.resetPerson()
         }
         
-        addButtonTapped.lazyBind { _ in
-            self.addPerson()
+        addButtonTapped.lazyBind { [weak self] _ in
+            self?.addPerson()
         }
     }
     
+    //MAKR: - Method
     private func loadPerson() {
         people.value = [
             Person(name: "James", age: Int.random(in: 20...70)),

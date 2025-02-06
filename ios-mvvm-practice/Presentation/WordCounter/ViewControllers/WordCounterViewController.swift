@@ -48,8 +48,8 @@ final class WordCounterViewController: UIViewController {
     }
     
     private func setupBinds() {
-        viewModel.countText.bind { text in
-            self.mainView.countLabel.text = text
+        viewModel.countText.bind { [weak self] text in
+            self?.mainView.countLabel.text = text
         }
     }
     

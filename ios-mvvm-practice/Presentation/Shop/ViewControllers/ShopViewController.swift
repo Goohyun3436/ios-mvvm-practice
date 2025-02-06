@@ -28,24 +28,24 @@ final class ShopViewController: UIViewController {
     
     //MARK: - Setup Method
     private func setupBinds() {
-        viewModel.outputSearchBarCancelShow.lazyBind { isShow in
-            self.mainView.searchBar.setShowsCancelButton(isShow, animated: true)
+        viewModel.outputSearchBarCancelShow.lazyBind { [weak self] isShow in
+            self?.mainView.searchBar.setShowsCancelButton(isShow, animated: true)
         }
         
-        viewModel.outputSearchBarCancelButtonTapped.lazyBind { _ in
-            self.mainView.searchBar.text = ""
-            self.view.endEditing(true)
+        viewModel.outputSearchBarCancelButtonTapped.lazyBind { [weak self] _ in
+            self?.mainView.searchBar.text = ""
+            self?.view.endEditing(true)
         }
         
-        viewModel.outputSearchError.lazyBind { err in
+        viewModel.outputSearchError.lazyBind { [weak self] err in
             guard let err else { return }
-            self.presentAlert(err.title, err.message)
+            self?.presentAlert(err.title, err.message)
         }
         
-        viewModel.outputQuery.lazyBind { query in
+        viewModel.outputQuery.lazyBind { [weak self] query in
             let vc = ShopDetailViewController()
             vc.viewModel.inputQuery.value = query
-            self.navigationController?.pushViewController(vc, animated: true)
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

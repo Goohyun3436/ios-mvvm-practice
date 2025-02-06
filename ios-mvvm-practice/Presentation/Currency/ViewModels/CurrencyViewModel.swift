@@ -9,23 +9,29 @@ import Foundation
 
 final class CurrencyViewModel {
     
+    //MAKR: - Input
     let amountText: Observable<String?> = Observable(nil)
     let convertButtonTapped: Observable<Void> = Observable(())
+    
+    //MAKR: - Output
     let resultText: Observable<String?> = Observable(nil)
     let convertValidation = Observable(false)
     
+    //MAKR: - Property
     private var amount: Double?
     
+    //MAKR: - Initializer Method
     init() {
-        amountText.bind { amount in
-            self.validation(of: amount)
+        amountText.bind { [weak self] amount in
+            self?.validation(of: amount)
         }
         
-        convertButtonTapped.lazyBind { _ in
-            self.convert()
+        convertButtonTapped.lazyBind { [weak self] _ in
+            self?.convert()
         }
     }
     
+    //MAKR: - Method
     private func validation(of amountText: String?) {
         self.amount = nil
         

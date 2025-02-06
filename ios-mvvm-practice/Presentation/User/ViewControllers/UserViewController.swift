@@ -63,8 +63,8 @@ final class UserViewController: UIViewController {
     }
     
     private func setupBinds() {
-        viewModel.people.lazyBind { _ in
-            self.mainView.tableView.reloadData()
+        viewModel.people.lazyBind { [weak self] _ in
+            self?.mainView.tableView.reloadData()
         }
     }
     

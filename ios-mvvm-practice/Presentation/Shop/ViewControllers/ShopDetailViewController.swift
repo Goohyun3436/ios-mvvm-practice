@@ -43,42 +43,42 @@ final class ShopDetailViewController: UIViewController {
     }
     
     private func setupBinds() {
-        viewModel.outputNavigationTitle.lazyBind { title in
-            self.title = title
+        viewModel.outputNavigationTitle.lazyBind { [weak self] title in
+            self?.title = title
         }
         
-        viewModel.outputSortButtonTapped.lazyBind { sort in
-            self.mainView.sortButtonStackView.changeButtonColors(selected: sort)
+        viewModel.outputSortButtonTapped.lazyBind { [weak self] sort in
+            self?.mainView.sortButtonStackView.changeButtonColors(selected: sort)
         }
         
-        viewModel.outputTotalText.lazyBind { text in
-            self.mainView.totalLabel.text = text
+        viewModel.outputTotalText.lazyBind { [weak self] text in
+            self?.mainView.totalLabel.text = text
         }
         
-        viewModel.outputShopItems.lazyBind { _ in
-            self.mainView.collectionView.reloadData()
+        viewModel.outputShopItems.lazyBind { [weak self] _ in
+            self?.mainView.collectionView.reloadData()
         }
         
-        viewModel.outputScrollToTop.lazyBind { _ in
-            self.mainView.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        viewModel.outputScrollToTop.lazyBind { [weak self] _ in
+            self?.mainView.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         }
         
-        viewModel.outputNetworkError.lazyBind { err in
+        viewModel.outputNetworkError.lazyBind { [weak self] err in
             guard let err else { return }
-            self.presentAlert(err.title, err.message) {
-                self.viewModel.inputPopVC.value = ()
+            self?.presentAlert(err.title, err.message) {
+                self?.viewModel.inputPopVC.value = ()
             }
         }
         
-        viewModel.outputError.lazyBind { err in
+        viewModel.outputError.lazyBind { [weak self] err in
             guard let err else { return }
-            self.presentAlert(err.title, err.message) {
-                self.viewModel.inputPopVC.value = ()
+            self?.presentAlert(err.title, err.message) {
+                self?.viewModel.inputPopVC.value = ()
             }
         }
         
-        viewModel.outputPopVC.lazyBind { _ in
-            self.navigationController?.popViewController(animated: true)
+        viewModel.outputPopVC.lazyBind { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
         }
     }
     
