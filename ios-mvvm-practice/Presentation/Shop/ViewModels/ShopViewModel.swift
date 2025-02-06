@@ -9,28 +9,6 @@ import Foundation
 
 final class ShopViewModel {
     
-    enum SearchError {
-        case emptyQuery, shortQuery
-        
-        var title: String {
-            switch self {
-            case .emptyQuery:
-                return "검색 실패"
-            case .shortQuery:
-                return "검색 실패"
-            }
-        }
-        
-        var message: String {
-            switch self {
-            case .emptyQuery:
-                return "검색어를 입력해주세요"
-            case .shortQuery:
-                return "검색어를 2글자 이상 입력해주세요"
-            }
-        }
-    }
-    
     //MARK: - Property
     let inputSearchBarCancelShow = Observable(false)
     let inputSearchBarCancelButtonTapped: Observable<Void?> = Observable(nil)
