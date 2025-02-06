@@ -14,10 +14,10 @@ final class UserViewModel {
         let age: Int
     }
     
-    var people: Observable<[Person]> = Observable([])
-    var loadButtonTapped: Observable<Void> = Observable(())
-    var resetButtonTapped: Observable<Void> = Observable(())
-    var addButtonTapped: Observable<Void> = Observable(())
+    let people: Observable<[Person]> = Observable([])
+    let loadButtonTapped: Observable<Void> = Observable(())
+    let resetButtonTapped: Observable<Void> = Observable(())
+    let addButtonTapped: Observable<Void> = Observable(())
     
     init() {
         loadButtonTapped.lazyBind { _ in

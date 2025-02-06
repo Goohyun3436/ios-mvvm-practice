@@ -9,10 +9,10 @@ import Foundation
 
 final class CurrencyViewModel {
     
-    var amountText: Observable<String?> = Observable(nil)
-    var convertButtonTapped: Observable<Void> = Observable(())
-    var resultText: Observable<String?> = Observable(nil)
-    var convertValidation = Observable(false)
+    let amountText: Observable<String?> = Observable(nil)
+    let convertButtonTapped: Observable<Void> = Observable(())
+    let resultText: Observable<String?> = Observable(nil)
+    let convertValidation = Observable(false)
     
     private var amount: Double?
     
