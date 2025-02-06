@@ -8,12 +8,15 @@
 import UIKit
 
 private enum TabBar: String, CaseIterable {
+    case shop
     case currency
     case wordCounter
     case user
     
     var vc: UIViewController.Type {
         switch self {
+        case .shop:
+            return ShopViewController.self
         case .currency:
             return CurrencyViewController.self
         case .wordCounter:
@@ -25,6 +28,8 @@ private enum TabBar: String, CaseIterable {
     
     var title: String {
         switch self {
+        case .shop:
+            return "쇼핑"
         case .currency:
             return "환율 계산기"
         case .wordCounter:
@@ -36,6 +41,8 @@ private enum TabBar: String, CaseIterable {
     
     var icon: String {
         switch self {
+        case .shop:
+            return "cart"
         case .currency:
             return "dollarsign.circle"
         case .wordCounter:

@@ -10,10 +10,12 @@
 		F84B9C5B2D53487C00DA4984 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F84B9C5A2D53487C00DA4984 /* SnapKit */; };
 		F84BA1972D5493A800DA4984 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F84BA1962D5493A800DA4984 /* Alamofire */; };
 		F84BA19A2D5493B600DA4984 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F84BA1992D5493B600DA4984 /* Kingfisher */; };
+		F84BA3022D549EA000DA4984 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F84BA3012D549EA000DA4984 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F84B9B9D2D5343AE00DA4984 /* ios-mvvm-practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-mvvm-practice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F84BA3012D549EA000DA4984 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -54,6 +56,7 @@
 		F84B9B942D5343AE00DA4984 = {
 			isa = PBXGroup;
 			children = (
+				F84BA3012D549EA000DA4984 /* .gitignore */,
 				F84B9B9F2D5343AE00DA4984 /* ios-mvvm-practice */,
 				F84B9B9E2D5343AE00DA4984 /* Products */,
 			);
@@ -139,6 +142,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F84BA3022D549EA000DA4984 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

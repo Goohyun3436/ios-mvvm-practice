@@ -7,23 +7,56 @@
 
 import UIKit
 
-class ShopViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+final class ShopViewController: UIViewController {
+    
+    //MARK: - UI Property
+    let mainView = ShopView()
+    
+    //MARK: - Override Method
+    override func loadView() {
+        view = mainView
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mainView.searchBar.delegate = self
     }
-    */
+    
+}
 
+//MARK: - UISearchBarDelegate
+extension ShopViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard var text = searchBar.text else {
+            return
+        }
+        
+        text = text.trimmingCharacters(in: .whitespaces)
+        
+        guard !text.isEmpty else {
+//            SearchAlert(SearchError.emptyQuery)
+            return
+        }
+        
+        guard text.count >= 2 else {
+//            SearchAlert(SearchError.shortQuery)
+            return
+        }
+        
+        let vc = ShopDetailViewController()
+        vc.query = mainView.searchBar.text
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        view.endEditing(true)
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
 }

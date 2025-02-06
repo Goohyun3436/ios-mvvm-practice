@@ -27,6 +27,8 @@ final class AppAppearance {
         UINavigationBar.appearance().standardAppearance = appearanceN
         UINavigationBar.appearance().scrollEdgeAppearance = appearanceN
         
+        UIBarButtonItem.appearance().tintColor = UIColor.white
+        
         BaseView.appearance().backgroundColor = UIColor.black
         
         UILabel.appearance().textColor = UIColor.white
@@ -42,10 +44,17 @@ final class AppAppearance {
         UITextView.appearance().textColor = UIColor.white
         UITextView.appearance().backgroundColor = UIColor.black
         
+        UISearchBar.appearance().barTintColor = UIColor.black
+        UISearchBar.appearance().keyboardAppearance = UIKeyboardAppearance.dark
+        UISearchTextField.appearance().tintColor = UIColor.lightGray
+        UISearchTextField.appearance().backgroundColor = UIColor.deepGray
+        
         UITableView.appearance().backgroundColor = UIColor.clear
         UITableView.appearance().separatorColor = UIColor.darkGray
         UITableView.appearance().indicatorStyle = .black
         UITableViewCell.appearance().backgroundColor = UIColor.clear
         UITableViewCell.appearance().selectionStyle = .none
+        
+        UICollectionView.appearance().backgroundColor = UIColor.clear
     }
 }
