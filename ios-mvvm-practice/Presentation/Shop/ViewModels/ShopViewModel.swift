@@ -9,6 +9,28 @@ import Foundation
 
 final class ShopViewModel {
     
+    enum SearchError {
+        case emptyQuery, shortQuery
+        
+        var title: String {
+            switch self {
+            case .emptyQuery:
+                return "검색 실패"
+            case .shortQuery:
+                return "검색 실패"
+            }
+        }
+        
+        var message: String {
+            switch self {
+            case .emptyQuery:
+                return "검색어를 입력해주세요"
+            case .shortQuery:
+                return "검색어를 2글자 이상 입력해주세요"
+            }
+        }
+    }
+    
     //MARK: - Property
     let inputSearchBarCancelShow = Observable(false)
     let inputSearchBarCancelButtonTapped: Observable<Void?> = Observable(nil)
@@ -16,22 +38,20 @@ final class ShopViewModel {
     
     let outputSearchBarCancelShow = Observable(false)
     let outputSearchBarCancelButtonTapped: Observable<Void?> = Observable(nil)
+    let outputSearchError: Observable<SearchError?> = Observable(nil)
     let outputQuery = Observable("")
     
     //MARK: - Initializer Meth
     init() {
         inputSearchBarCancelShow.lazyBind { isShow in
-            print("inputSearchBarCancelShow", isShow)
             self.outputSearchBarCancelShow.value = isShow
         }
         
         inputSearchBarCancelButtonTapped.lazyBind { _ in
-            print("inputSearchBarCancelButtonTapped")
             self.outputSearchBarCancelButtonTapped.value = ()
         }
         
         inputSearchButtonTapped.lazyBind { query in
-            print("inputSearchButtonTapped")
             self.validation(query)
         }
     }
@@ -39,19 +59,19 @@ final class ShopViewModel {
     //MARK: - Method
     private func validation(_ query: String?) {
         guard var query else {
-            //nil
+            outputSearchError.value = .emptyQuery
             return
         }
         
         query = query.trimmingCharacters(in: .whitespaces)
         
         guard !query.isEmpty else {
-            //emptyQuery
+            outputSearchError.value = .emptyQuery
             return
         }
         
         guard query.count >= 2 else {
-            //shortQuery
+            outputSearchError.value = .shortQuery
             return
         }
         

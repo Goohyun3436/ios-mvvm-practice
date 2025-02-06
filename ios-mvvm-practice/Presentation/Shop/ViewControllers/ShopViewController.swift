@@ -37,6 +37,11 @@ final class ShopViewController: UIViewController {
             self.view.endEditing(true)
         }
         
+        viewModel.outputSearchError.lazyBind { err in
+            guard let err else { return }
+            self.presentAlert(err.title, err.message)
+        }
+        
         viewModel.outputQuery.lazyBind { query in
             let vc = ShopDetailViewController()
             vc.query = query
