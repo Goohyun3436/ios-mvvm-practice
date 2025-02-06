@@ -14,8 +14,7 @@ final class CurrencyViewModel {
     let convertButtonTapped: Observable<Void> = Observable(())
     
     //MAKR: - Output
-    let resultText: Observable<String?> = Observable(nil)
-    let convertValidation = Observable(false)
+    let result: Observable<CurrencyResult> = Observable(.empty)
     
     //MAKR: - Property
     private var amount: Double?
@@ -36,44 +35,36 @@ final class CurrencyViewModel {
         self.amount = nil
         
         guard let amountText else {
-            resultText.value = "환전 결과가 여기에 표시됩니다."
-            convertValidation.value = false
+            result.value = .empty
             return
         }
         
         guard !amountText.isEmpty else {
-            resultText.value = "환전 결과가 여기에 표시됩니다."
-            convertValidation.value = false
+            result.value = .empty
             return
         }
         
         guard let amount = Double(amountText) else {
-            resultText.value = "올바른 금액을 입력해주세요."
-            convertValidation.value = false
+            result.value = .not_numeric
             return
         }
         
         guard  0 < amount && amount <= 10000000000 else {
-            resultText.value = "0 ~ 100억 달러 사이의 원화 금액을 입력해주세요."
-            convertValidation.value = false
+            result.value = .out_of_range
             return
         }
         
-        resultText.value = "환전 결과가 여기에 표시됩니다."
-        convertValidation.value = true
+        result.value = .ready
         self.amount = amount
     }
     
     private func convert() {
         guard let amount else {
-            resultText.value = "올바른 금액을 입력해주세요."
-            convertValidation.value = true
+            result.value = .not_numeric
             return
         }
         
-        let exchangeRate = 1350.0  // 실제 환율 데이터로 대체 필요
-        let convertedAmount = amount / exchangeRate
-        resultText.value = String(format: "%.2f USD (약 $%.2f)", convertedAmount, convertedAmount)
+        result.value = .success(amount)
     }
     
 }

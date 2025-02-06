@@ -67,15 +67,13 @@ final class CurrencyViewController: UIViewController {
         )
     }
     
-    private func setupBinds() {
-        viewModel.convertValidation.bind { [weak self] validation in
-            self?.mainView.convertButton.backgroundColor = validation
+    private func setupBinds() {        
+        viewModel.result.bind { [weak self] result in
+            self?.mainView.resultLabel.text = result.message
+            
+            self?.mainView.convertButton.backgroundColor = result.validation
                 ? UIColor.white
                 : UIColor.gray
-        }
-        
-        viewModel.resultText.bind { [weak self] text in
-            self?.mainView.resultLabel.text = text
         }
     }
     
