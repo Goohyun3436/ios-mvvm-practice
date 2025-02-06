@@ -8,15 +8,10 @@
 import Foundation
 
 enum SearchError {
-    case emptyQuery, shortQuery
+    case emptyQuery, shortQuery, emptyData
     
     var title: String {
-        switch self {
-        case .emptyQuery:
-            return "검색 실패"
-        case .shortQuery:
-            return "검색 실패"
-        }
+        return "검색 실패"
     }
     
     var message: String {
@@ -25,6 +20,8 @@ enum SearchError {
             return "검색어를 입력해주세요"
         case .shortQuery:
             return "검색어를 2글자 이상 입력해주세요"
+        case .emptyData:
+            return "검색 결과가 없습니다."
         }
     }
 }

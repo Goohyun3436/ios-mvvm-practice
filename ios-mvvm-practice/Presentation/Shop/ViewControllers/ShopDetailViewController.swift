@@ -15,7 +15,6 @@ final class ShopDetailViewController: UIViewController {
     //MARK: - Property
     let viewModel = ShopDetailViewModel()
     
-    
     //MARK: - Override Method
     override func loadView() {
         view = mainView
@@ -62,6 +61,24 @@ final class ShopDetailViewController: UIViewController {
         
         viewModel.outputScrollToTop.lazyBind { _ in
             self.mainView.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
+        
+        viewModel.outputNetworkError.lazyBind { err in
+            guard let err else { return }
+            self.presentAlert(err.title, err.message) {
+                self.viewModel.inputPopVC.value = ()
+            }
+        }
+        
+        viewModel.outputError.lazyBind { err in
+            guard let err else { return }
+            self.presentAlert(err.title, err.message) {
+                self.viewModel.inputPopVC.value = ()
+            }
+        }
+        
+        viewModel.outputPopVC.lazyBind { _ in
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

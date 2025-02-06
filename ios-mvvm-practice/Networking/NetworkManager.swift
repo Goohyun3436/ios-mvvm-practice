@@ -18,7 +18,7 @@ final class NetworkManager {
         _ request: ShopRequest,
         _ responseT: ResponseType.Type,
         completionHandler: @escaping (ResponseType) -> Void,
-        failureHandler: @escaping (AFError) -> Void
+        failureHandler: @escaping (ShopError) -> Void
     ) {
         AF.request(
             request.endpoint,
@@ -32,19 +32,18 @@ final class NetworkManager {
             case .success(let data):
                 completionHandler(data)
                     
-            case .failure(let err):
-                failureHandler(err)
-//                guard let data = response.data else {
-//                    failHandler(TMDBStatusCode(0))
-//                    return
-//                }
-//                
-//                do {
-//                    let err = try JSONDecoder().decode(TMDBError.self, from: data)
-//                    failHandler(TMDBStatusCode(err.status_code))
-//                } catch {
-//                    failHandler(TMDBStatusCode(0))
-//                }
+            case .failure(_):
+                guard let data = response.data else {
+                    failureHandler(ShopError(""))
+                    return
+                }
+                
+                do {
+                    let err = try JSONDecoder().decode(ShopErrorResponse.self, from: data)
+                    failureHandler(ShopError(err.errorCode))
+                } catch {
+                    failureHandler(ShopError(""))
+                }
             }
         }
     }

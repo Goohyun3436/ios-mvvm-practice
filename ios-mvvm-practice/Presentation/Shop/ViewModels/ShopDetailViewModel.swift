@@ -10,17 +10,23 @@ import Alamofire
 
 final class ShopDetailViewModel {
     
-    //MARK: - Property
+    //MARK: - Input
     let inputQuery: Observable<String?> = Observable(nil)
     let inputSortButtonTapped: Observable<Sort> = Observable(.sim)
     let inputPreFetchTrigger: Observable<[IndexPath]> = Observable([])
+    let inputPopVC: Observable<Void?> = Observable(nil)
     
+    //MARK: - Output
     let outputNavigationTitle = Observable("")
     let outputSortButtonTapped: Observable<Sort> = Observable(.sim)
     let outputTotalText = Observable("")
     let outputShopItems: Observable<[ShopItem]> = Observable([])
     let outputScrollToTop: Observable<Void?> = Observable(nil)
+    let outputNetworkError: Observable<ShopError?> = Observable(nil)
+    let outputError: Observable<SearchError?> = Observable(nil)
+    let outputPopVC: Observable<Void?> = Observable(nil)
     
+    //MARK: - Property
     private var query: String? {
         didSet {
             self.getShopItems()
@@ -64,6 +70,10 @@ final class ShopDetailViewModel {
         inputPreFetchTrigger.lazyBind { indexPaths in
             self.prefetchItemsAt(indexPaths)
         }
+        
+        inputPopVC.lazyBind { _ in
+            self.outputPopVC.value = ()
+        }
     }
     
     //MARK: - Method
@@ -74,12 +84,18 @@ final class ShopDetailViewModel {
             if self.start == 1 {
                 self.total = data.total
                 self.outputShopItems.value = data.items
+                
+                guard self.total > 0 else {
+                    self.outputError.value = .emptyData
+                    return
+                }
+                
                 self.outputScrollToTop.value = ()
             } else {
                 self.outputShopItems.value.append(contentsOf: data.items)
             }
         }, failureHandler: { err in
-            print(">>", err)
+            self.outputNetworkError.value = err
         })
     }
     
