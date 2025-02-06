@@ -33,7 +33,7 @@ final class ShopDetailViewModel {
             self.outputNavigationTitle.value = query ?? ""
         }
     }
-    private let fixDisplay: Int = 30
+    private let fixDisplay: Int = 100
     private lazy var display: Int = fixDisplay
     private var start: Int = 1 {
         didSet {
