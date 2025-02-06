@@ -27,6 +27,8 @@ final class CurrencyViewModel {
     }
     
     private func validation(of amountText: String?) {
+        self.amount = nil
+        
         guard let amountText else {
             resultText.value = "환전 결과가 여기에 표시됩니다."
             convertValidation.value = false
