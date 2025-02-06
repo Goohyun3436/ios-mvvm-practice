@@ -24,10 +24,9 @@ final class AppAppearance {
         appearanceN.backgroundColor = UIColor.black
         appearanceN.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearanceN.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().standardAppearance = appearanceN
         UINavigationBar.appearance().scrollEdgeAppearance = appearanceN
-        
-        UIBarButtonItem.appearance().tintColor = UIColor.white
         
         BaseView.appearance().backgroundColor = UIColor.black
         

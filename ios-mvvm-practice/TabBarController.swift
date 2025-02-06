@@ -77,6 +77,7 @@ final class TabBarController: UITabBarController {
     private func makeNav(_ tab: TabBar) -> UINavigationController {
         let vc = tab.vc.init()
         let nav = UINavigationController(rootViewController: vc)
+        vc.navigationItem.backButtonTitle = ""
         vc.navigationItem.title = tab.title
         nav.tabBarItem.image = UIImage(systemName: tab.icon, withConfiguration: UIImage.SymbolConfiguration(font: .systemFont(ofSize: 16, weight: .bold)))
         nav.tabBarItem.title = tab.rawValue.uppercased()
