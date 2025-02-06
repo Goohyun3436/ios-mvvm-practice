@@ -21,7 +21,12 @@ final class ShopDetailViewModel {
     let outputShopItems: Observable<[ShopItem]> = Observable([])
     let outputScrollToTop: Observable<Void?> = Observable(nil)
     
-    private var query: String?
+    private var query: String? {
+        didSet {
+            self.getShopItems()
+            self.outputNavigationTitle.value = query ?? ""
+        }
+    }
     private let fixDisplay: Int = 30
     private lazy var display: Int = fixDisplay
     private var start: Int = 1 {
@@ -41,8 +46,6 @@ final class ShopDetailViewModel {
     init() {
         inputQuery.lazyBind { query in
             self.query = query
-            self.getShopItems()
-            self.outputNavigationTitle.value = query ?? ""
         }
         
         inputSortButtonTapped.lazyBind { sort in

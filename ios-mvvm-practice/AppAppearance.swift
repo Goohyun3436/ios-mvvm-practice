@@ -55,5 +55,6 @@ final class AppAppearance {
         UITableViewCell.appearance().selectionStyle = .none
         
         UICollectionView.appearance().backgroundColor = UIColor.clear
+        UICollectionView.appearance().indicatorStyle = .white
     }
 }
